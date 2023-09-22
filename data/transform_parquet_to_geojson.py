@@ -6,7 +6,7 @@ Hello friend, if you are new to Python, here is what you must do to get your geo
 
     brew install python3
     pip3 install -r requirements.txt
-    python3 -m export_geojson
+    python3 -m transform_parquet_to_geojson
 
 If you are not new to Python, please use a virtualenv...
 """
