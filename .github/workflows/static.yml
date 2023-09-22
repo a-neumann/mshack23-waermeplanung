@@ -7,18 +7,6 @@ on:
 
 jobs:
 
-  sync-gh-pages-branch:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
-      - name: Merge main into gh-pages
-        uses: devmasx/merge-branch@master
-        with:
-          type: now
-          from_branch: main
-          target_branch: gh-pages
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-
   deploy:
     runs-on: ubuntu-22.04
     permissions:
