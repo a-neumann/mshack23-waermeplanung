@@ -32,5 +32,5 @@ jobs:
           MAPBOX_ACCESS_TOKEN: ${{ secrets.MAPBOX_ACCESS_TOKEN }}
       - name: Deploy
         run: npm run deploy
-        with:
+        env:
           github_token: ${{ secrets.GITHUB_TOKEN }}
