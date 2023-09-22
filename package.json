@@ -1,0 +1,32 @@
+{
+  "name": "mshack23-waermeplanung",
+  "version": "0.0.1",
+  "description": "Kommunale Wärmeplanung",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "prebuild": "cp -r src/index.html dist/index.html",
+    "build": "esbuild src/index.tsx --bundle --minify --sourcemap --outfile=dist/index.js",
+    "dev": "npm run build -- --servedir=dist --serve --watch"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/a-neumann/mshack23-waermeplanung.git"
+  },
+  "author": "Syte GmbH und Support ♥",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/a-neumann/mshack23-waermeplanung/issues"
+  },
+  "homepage": "https://github.com/a-neumann/mshack23-waermeplanung#readme",
+  "devDependencies": {
+    "esbuild": "^0.19.3",
+    "typescript": "^5.2.2"
+  },
+  "dependencies": {
+    "@types/react": "^18.2.22",
+    "@types/react-dom": "^18.2.7",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  }
+}
