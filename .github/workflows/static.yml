@@ -4,9 +4,21 @@ on:
   push:
     branches:
       - main
-  pull_request:
 
 jobs:
+
+  sync-gh-pages-branch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Merge main into gh-pages
+        uses: devmasx/merge-branch@master
+        with:
+          type: now
+          from_branch: main
+          target_branch: gh-pages
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+
   deploy:
     runs-on: ubuntu-22.04
     permissions:
@@ -37,6 +49,5 @@ jobs:
         uses: peaceiris/actions-gh-pages@v3
         if: github.ref == 'refs/heads/main'
         with:
-          publish_branch: main
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./dist
