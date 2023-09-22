@@ -7,7 +7,8 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "prebuild": "cp -r src/index.html dist/index.html",
     "build": "esbuild src/index.tsx --bundle --minify --sourcemap --outfile=dist/index.js",
-    "dev": "npm run build -- --servedir=dist --serve --watch"
+    "dev": "npm run build -- --servedir=dist --serve --watch",
+    "deploy": "gh-pages -d dist"
   },
   "repository": {
     "type": "git",
