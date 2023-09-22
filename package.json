@@ -7,8 +7,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "prebuild": "cp -r src/index.html dist/index.html",
     "build": "esbuild src/index.tsx --bundle --minify --sourcemap --outfile=dist/index.js",
-    "dev": "npm run build -- --servedir=dist --serve --watch",
-    "deploy": "gh-pages -d dist"
+    "dev": "npm run build -- --servedir=dist --serve --watch"
   },
   "repository": {
     "type": "git",
@@ -21,13 +20,14 @@
   },
   "homepage": "https://github.com/a-neumann/mshack23-waermeplanung#readme",
   "devDependencies": {
+    "@types/mapbox-gl": "^2.7.14",
     "esbuild": "^0.19.3",
     "typescript": "^5.2.2"
   },
   "dependencies": {
     "@types/react": "^18.2.22",
     "@types/react-dom": "^18.2.7",
-    "gh-pages": "^6.0.0",
+    "mapbox-gl": "^2.15.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   }
