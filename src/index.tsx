@@ -6,7 +6,9 @@ render(
 );
 
 try {
-    new EventSource("/esbuild").addEventListener("change", () => location.reload())
+    if (!window.location.hostname.includes("github.io")) {
+        new EventSource("/esbuild").addEventListener("change", () => location.reload())
+    }
 } catch (e) {
     // noop
 }
