@@ -5,9 +5,10 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "prebuild": "cp -r src/index.html dist/index.html",
+    "prebuild": "ejs src/index.ejs -o dist/index.html",
     "build": "esbuild src/index.tsx --bundle --minify --sourcemap --outfile=dist/index.js",
-    "dev": "npm run build -- --servedir=dist --serve --watch"
+    "dev:start": "npm run build -- --servedir=dist --serve --watch",
+    "dev": "npx dotenv -e .env npm run dev:start"
   },
   "repository": {
     "type": "git",
@@ -27,6 +28,8 @@
   "dependencies": {
     "@types/react": "^18.2.22",
     "@types/react-dom": "^18.2.7",
+    "dotenv": "^16.3.1",
+    "ejs": "^3.1.9",
     "mapbox-gl": "^2.15.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
