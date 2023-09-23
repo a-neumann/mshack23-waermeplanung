@@ -1,7 +1,8 @@
 import { render } from "react-dom";
+import App from "./App";
 
 render(
-    <h1>MS HACK 2023</h1>,
+    <App />,
     document.getElementById("app")
 );
 
