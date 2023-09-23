@@ -6,6 +6,13 @@ import Box from "@mui/material/Box";
 import Sidebar from "./Sidebar";
 import LayerMenu from "./LayerMenu";
 import MapSliders from "./MapSliders";
+import { useState } from "react";
+import Paper from "@mui/material/Paper";
+import IconButton from "@mui/material/IconButton";
+import HomeOutlinedIcon from "@mui/icons-material/HomeOutlined";
+import MapOutlinedIcon from "@mui/icons-material/MapOutlined";
+import Container from "@mui/material/Container";
+import Typography from "@mui/material/Typography";
 
 const theme = createTheme({
     components: {
@@ -22,7 +29,16 @@ html, body, #app {
     }
 });
 
+const HomeIconButton = styled(IconButton)({
+    position: "absolute",
+    top: 16,
+    right: 16,
+    zIndex: 3
+});
+
 const App: React.FC = () => {
+
+    const [showHomepage, setShowHomepage] = useState(true);
 
     return (
         <ThemeProvider theme={theme}>
@@ -36,6 +52,16 @@ const App: React.FC = () => {
                         <Map />
                     </Box>
                 </Box>
+                <HomeIconButton onClick={() => setShowHomepage(!showHomepage)}>
+                    {showHomepage ? <MapOutlinedIcon /> : <HomeOutlinedIcon />}
+                </HomeIconButton>
+                {showHomepage && (
+                    <Paper sx={{ position: "absolute", top: 0, right: 0, bottom: 0, left: 0, zIndex: 2 }}>
+                        <Container>
+                            <Typography variant="h1">Home page</Typography>
+                        </Container>
+                    </Paper>
+                )}
             </MapContextProvider>
         </ThemeProvider>
     );
