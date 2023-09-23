@@ -13,7 +13,7 @@ import HomeOutlinedIcon from "@mui/icons-material/HomeOutlined";
 import MapOutlinedIcon from "@mui/icons-material/MapOutlined";
 import Container from "@mui/material/Container";
 import Typography from "@mui/material/Typography";
-import { colors, responsiveFontSizes } from "@mui/material";
+import { Button, colors, responsiveFontSizes } from "@mui/material";
 
 const theme = createTheme({
   components: {
@@ -43,7 +43,7 @@ const HeaderImage = styled("img")({
   opacity: 0.65,
 });
 
-const Typography = styled("h1")({
+const TypographyH1 = styled("h1")({
   position: "absolute",
   top: 370,
   right: 35,
@@ -74,6 +74,11 @@ const TypographyText = styled("p")({
   fontWeight:"bold",
 });
 
+const CtaContainer = styled("div")({
+  position: "absolute",
+  top: 695,
+  right: 35,
+});
 
 
 const App: React.FC = () => {
@@ -97,7 +102,6 @@ const App: React.FC = () => {
             justifySelf="stretch"
           >
             <LayerMenu />
-            <MapSliders />
             <Map />
           </Box>
         </Box>
@@ -118,15 +122,17 @@ const App: React.FC = () => {
           >
             <HeaderImage src="assets/header.png" />
             <Container>
-              <Typography variant="h1">Münster Heat Map</Typography>
-              <TypographySlogan variant="h3">
+              <TypographyH1 variant="h3">
                 Heating that works
-              </TypographySlogan>
+              </TypographyH1>
               <TypographyText variant="p">
                 Wir informieren Münsteraner*innen und zeigen mit Hilfe von KI
                 und OpenData <br></br>ihre persöhnliche zukünftige Wärmeversorgung sowie
                 mögliche Alternativen.
               </TypographyText>
+              <CtaContainer>
+                <Button variant="contained" size="large" onClick={() => setShowHomepage(false)}>Zur Münster-Karte</Button>
+              </CtaContainer>
             </Container>
           </Paper>
         )}
