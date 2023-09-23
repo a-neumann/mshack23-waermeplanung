@@ -24,7 +24,7 @@ html, body, #app {
     padding: 0;
     width: 100%;
     height: 100%;
-}
+}`,
     },
   },
 });
@@ -38,7 +38,7 @@ const HomeIconButton = styled(IconButton)({
 
 const HeaderImage = styled("img")({
   width: "100%",
-  height: 700,
+  height: "100%",
   objectFit: "cover",
   opacity: 0.7,
 });
@@ -59,24 +59,19 @@ const TypographySlogan = styled("h3")({
   zIndex: 2,
   fontSize: "30",
   color: "#353d4f",
-});
 
-const Grid = styled("section")({
-  display: "grid",
-  gap: "24px",
-  gridTemplateColumns: "1fr 1fr",
-  gridTemplateRows: "1fr 1fr",
 });
 
 const TypographyText = styled("p")({
-    fontSize:"22px"
+  fontSize: "22px",
+    position: "absolute",
+  top: 590,
+  right: 35,
+  zIndex: 2,
+  color: "#353d4f",
 });
 
-const AboutImage = styled("img")({
-  height: "300px",
-  marginTop: 20,
-  backgroundSize: "cover",
-});
+
 
 const App: React.FC = () => {
   const [showHomepage, setShowHomepage] = useState(true);
@@ -115,6 +110,7 @@ const App: React.FC = () => {
               bottom: 0,
               left: 0,
               zIndex: 2,
+              backgroundColor: "white",
             }}
           >
             <HeaderImage src="assets/header.png" />
@@ -123,15 +119,11 @@ const App: React.FC = () => {
               <TypographySlogan variant="h3">
                 Heating that works
               </TypographySlogan>
-              <Grid>
-                <TypographyText variant="p">
-                  Wir informieren Münsteraner*innen und zeigen mit Hilfe von KI und
-                  OpenData ihre persöhnliche zukünftige Wärmeversorgung sowie mögliche Alternativen
-                  auf.
-                </TypographyText>
-                <AboutImage src="assets/header.png" />
-
-              </Grid>
+              <TypographyText variant="p">
+                Wir informieren Münsteraner*innen und zeigen mit Hilfe von KI
+                und OpenData <br></br>ihre persöhnliche zukünftige Wärmeversorgung sowie
+                mögliche Alternativen.
+              </TypographyText>
             </Container>
           </Paper>
         )}
