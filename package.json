@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "prebuild": "ejs src/index.ejs -o dist/index.html",
+    "prebuild": "ejs src/index.ejs -o dist/index.html && cp -r src/assets/ dist/assets/",
     "build": "esbuild src/index.tsx --bundle --minify --sourcemap --outfile=dist/index.js --alias:@mui/styled-engine=@mui/styled-engine-sc",
     "dev:start": "npm run build -- --servedir=dist --serve --watch",
     "dev": "dotenv -e .env npm run dev:start"
