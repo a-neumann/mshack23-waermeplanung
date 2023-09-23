@@ -59,14 +59,14 @@ const Map: React.FC = () => {
 
                 console.log("selected building: ", e.features?.[0]);
 
-                const building = e.features?.[0] as unknown as IBuildingData;
+                const buildingProps = (e.features?.[0].properties || null) as unknown as IBuildingData | null;
 
-                console.log("Old selected building", selectedBuilding?.properties.id);
+                console.log("Old selected building", buildingProps);
 
-                if (building.properties.id === selectedBuilding?.properties.id) {
+                if (buildingProps?.id === selectedBuilding?.id) {
                     selectBuilding(null);
                 } else {
-                    selectBuilding(building);
+                    selectBuilding(buildingProps);
                 }
             };
 
@@ -79,59 +79,59 @@ const Map: React.FC = () => {
 
     }, [map, selectedBuilding, selectBuilding]);
 
-    useEffect(() => {
+    // useEffect(() => {
 
-        if (!map) return;
+    //     if (!map) return;
 
-        const popup = new Popup({
-            closeButton: false,
-            closeOnClick: false
-        });
+    //     const popup = new Popup({
+    //         closeButton: false,
+    //         closeOnClick: false
+    //     });
 
-        const enterListener = (e: MapLayerMouseEvent) => {
-            // Change the cursor style as a UI indicator.
-            map.getCanvas().style.cursor = "pointer";
+    //     const enterListener = (e: MapLayerMouseEvent) => {
+    //         // Change the cursor style as a UI indicator.
+    //         map.getCanvas().style.cursor = "pointer";
 
-            if (e.features?.[0]) {
+    //         if (e.features?.[0]) {
 
-                const cluster = e.features[0] as unknown as IBuildingCluster;
+    //             const cluster = e.features[0] as unknown as IBuildingCluster;
 
-                // Copy coordinates array.
-                const coordinates = cluster.geometry.coordinates.slice();
-                const energyLabel = cluster.properties.Energy_Usage_Label;
-                const mwhPha = cluster.properties.Total_WB_HU_MWh_Per_Ha;
+    //             // Copy coordinates array.
+    //             const coordinates = cluster.geometry.coordinates.slice();
+    //             const energyLabel = cluster.properties.Energy_Usage_Label;
+    //             const mwhPha = cluster.properties.Total_WB_HU_MWh_Per_Ha;
 
-                const text = "Energie-Label: " + energyLabel + "<br />" +
-                    "Wärmeverbrauch pro Hektar: " + mwhPha + " MWh";
+    //             const text = "Energie-Label: " + energyLabel + "<br />" +
+    //                 "Wärmeverbrauch pro Hektar: " + mwhPha + " MWh";
                 
-                // Ensure that if the map is zoomed out such that multiple
-                // copies of the feature are visible, the popup appears
-                // over the copy being pointed to.
-                while (Math.abs(e.lngLat.lng - coordinates[0]) > 180) {
-                    coordinates[0] += e.lngLat.lng > coordinates[0] ? 360 : -360;
-                }
+    //             // Ensure that if the map is zoomed out such that multiple
+    //             // copies of the feature are visible, the popup appears
+    //             // over the copy being pointed to.
+    //             while (Math.abs(e.lngLat.lng - coordinates[0]) > 180) {
+    //                 coordinates[0] += e.lngLat.lng > coordinates[0] ? 360 : -360;
+    //             }
                 
-                // Populate the popup and set its coordinates
-                // based on the feature found.
-                popup.setLngLat(coordinates).setHTML(text).addTo(map);
-            }
-        };
+    //             // Populate the popup and set its coordinates
+    //             // based on the feature found.
+    //             popup.setLngLat(coordinates).setHTML(text).addTo(map);
+    //         }
+    //     };
 
-        const mouseLeave = (e: MapLayerMouseEvent) => {
+    //     const mouseLeave = (e: MapLayerMouseEvent) => {
 
-            map.getCanvas().style.cursor = "";
-            popup.remove();
-        };
+    //         map.getCanvas().style.cursor = "";
+    //         popup.remove();
+    //     };
              
-        map.on("mouseenter", "building-blocks", enterListener);
-        map.on("mouseleave", "building-blocks", mouseLeave);
+    //     map.on("mouseenter", "building-blocks", enterListener);
+    //     map.on("mouseleave", "building-blocks", mouseLeave);
 
-        return () => {
-            map.off("mouseenter", "building-blocks", enterListener);
-            map.off("mouseleave", "building-blocks", mouseLeave);
-        };
+    //     return () => {
+    //         map.off("mouseenter", "building-blocks", enterListener);
+    //         map.off("mouseleave", "building-blocks", mouseLeave);
+    //     };
 
-    }, [map]);
+    // }, [map]);
 
     useEffect(() => {
 
@@ -139,8 +139,13 @@ const Map: React.FC = () => {
             "all",
             [
               "match",
-              ["id"],
-              [selectedBuilding?.properties.Shape_Area ?? 99999999999999],
+              [
+                
+                    "get",
+                    "id"
+                
+              ],
+              [selectedBuilding?.id ?? 0],
               true,
               false
             ]

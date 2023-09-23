@@ -2,33 +2,13 @@ import { createContext, useState } from "react";
 import { Map as MapboxMap } from "mapbox-gl";
 
 export interface IBuildingData {
-    id: string;
-    layer: {id: string, type: string };
-    properties: {
-        id: string, // unique id
-        AGS: string,
-        AGS5: string,
-        CellCode: string,
-        EBZ_Final: number,
-        Fest_ID: number,
-        Funktion: string,
-        GEBAEUDETY: string, // Gebäudetyp
-        GEB_HOEHE: number,
-        GEB_KLASSE: number,
-        GEB_TYP: string,
-        GEB_TYP_IF: string,
-        Gemeindena: string, // Gemeinde
-        JAHRES_T: number,
-        Kreisname: string, // Kreis
-        OS: string,
-        Shape_Area: number,
-        Shape_Leng: number,
-        VOL: number,
-        WB_HU: number, // Wäremebedarf
-        WLD_ID: number, // Wäremebedarf pro m2
-        spez_WB_HU: number,
-        waermepreisBeimKundenProKWh: string
-    };
+    id: string, // unique id
+    block_energy_usage_label: number, // 1-5
+    block_touching_a_heat_line: boolean,
+    spez_wb_hu: number, // Wärmbedarf pro m2
+    total_wb_HU_mwh_per_ha: number,
+    waermepreis_beim_kunden_pro_kwh: number,
+    wb_hu: number
 }
 
 interface IMapContext {
