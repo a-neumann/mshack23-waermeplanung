@@ -22,21 +22,14 @@ const noDecimals = (n: number | string) => noDecimalFormat.format(+n);
 const decimalsFormat = new Intl.NumberFormat("de", { minimumFractionDigits: 2 });
 const decimals = (n: number | string) => decimalsFormat.format(+n);
 
-const potentialText = {
-    "": ""
+const potentialText: Record<number, string> = {
+    0: "Unwahrscheinlich",
+    1: "Unwahrscheinlich",
+    2: "Geringe Wahrscheinlichkeit",
+    3: "Mittler Wahrscheinlichkeit",
+    4: "Sehr hohe Wahrscheinlichkeit",
+    5: "Sehr hohe Wahrscheinlichkeit",
 };
-
-/*
-
-    id: string, // unique id
-    block_energy_usage_label: number, // 1-5
-    block_touching_a_heat_line: boolean,
-    spez_wb_hu: number, // Wärmbedarf pro m2
-    total_wb_HU_mwh_per_ha: number,
-    waermepreis_beim_kunden_pro_kwh: number,
-    wb_hu: number
-
-*/
 
 const Sidebar: React.FC = () => {
 
@@ -51,7 +44,7 @@ const Sidebar: React.FC = () => {
                 <TableContainer component={Box} marginTop={2}>
                     <Table size="small">
                         <TableBody>
-                            <Row name="Wärmenetz-Potenzial" value={selectedBuilding.block_energy_usage_label} />
+                            <Row name="Wärmenetz-Potenzial" value={potentialText[selectedBuilding.block_energy_usage_label] || "kein Daten"} />
                             <Row name="Wärmenetz heute verfügbar?" value={selectedBuilding.block_touching_a_heat_line ? "ja" : "nein"} />
                             <Row name="Spezifischer Wärmebedarf des Gebäudes (kWh/m2*a)" value={noDecimals(selectedBuilding.spez_wb_hu)} />
                             <Row name="Absoluter Wärmebedarf des Gebäudes (kWh/a)" value={noDecimals(selectedBuilding.wb_hu)} />
