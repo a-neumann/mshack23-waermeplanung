@@ -1,0 +1,14 @@
+{
+  "recipe": {
+    "version": 1,
+    "layers": {
+      "building_blocks": {
+        "source": "mapbox://tileset-source/muenster-heatmap/building_blocks",
+        "minzoom": 0,
+        "maxzoom": 16
+      }
+    }
+  },
+  "name": "Building Blocks",
+  "description": "Building Blocks in Münster mit Informationen zum Wärmeverbrauch und zur Wärmeversorgung"
+}

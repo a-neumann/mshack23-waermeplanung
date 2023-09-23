@@ -132,3 +132,6 @@ dist
 .idea/
 __pycache__/
 *.geojson
+
+# MacOS
+.DS_Store

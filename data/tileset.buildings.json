@@ -1,0 +1,14 @@
+{
+  "recipe": {
+    "version": 1,
+    "layers": {
+      "buildings": {
+        "source": "mapbox://tileset-source/muenster-heatmap/buildings",
+        "minzoom": 0,
+        "maxzoom": 16
+      }
+    }
+  },
+  "name": "Buildings",
+  "description": "Building in Münster angereichert mit Informationen zum Wärmeverbrauch und zur Wärmeversorgung"
+}
