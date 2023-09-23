@@ -36,22 +36,27 @@ interface IMapContext {
     setMap: (map: MapboxMap) => void;
     selectedBuilding: IBuildingData | null;
     selectBuilding: (building: IBuildingData | null) => void;
+    showAreas: boolean;
+    setShowAreas: (show: boolean) => void;
 }
 
 const MapContext = createContext<IMapContext>({
     map: null,
     setMap: () => { },
     selectedBuilding: null,
-    selectBuilding: () => { }
+    selectBuilding: () => { },
+    showAreas: true,
+    setShowAreas: () => { }
 });
 
 export const MapContextProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
 
     const [map, setMap] = useState<MapboxMap | null>(null);
+    const [showAreas, setShowAreas] = useState(true);
     const [selectedBuilding, selectBuilding] = useState<IBuildingData | null>(null);
 
     return (
-        <MapContext.Provider value={{ map, setMap, selectedBuilding, selectBuilding }}>
+        <MapContext.Provider value={{ map, setMap, selectedBuilding, selectBuilding, showAreas, setShowAreas }}>
             {children}
         </MapContext.Provider>
     );
