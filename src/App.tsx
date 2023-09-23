@@ -40,7 +40,7 @@ const HeaderImage = styled("img")({
   width: "100%",
   height: "100%",
   objectFit: "cover",
-  opacity: 0.7,
+  opacity: 0.65,
 });
 
 const Typography = styled("h1")({
@@ -49,7 +49,8 @@ const Typography = styled("h1")({
   right: 35,
   zIndex: 2,
   fontSize: "90",
-  color: "#353d4f",
+  color: "#343b4d",
+
 });
 
 const TypographySlogan = styled("h3")({
@@ -58,17 +59,19 @@ const TypographySlogan = styled("h3")({
   right: 35,
   zIndex: 2,
   fontSize: "30",
-  color: "#353d4f",
+  color: "#343b4d",
+
 
 });
 
 const TypographyText = styled("p")({
-  fontSize: "22px",
+  fontSize: "20px",
     position: "absolute",
-  top: 590,
+  top: 595,
   right: 35,
   zIndex: 2,
-  color: "#353d4f",
+  color: "#343b4d",
+  fontWeight:"bold",
 });
 
 
